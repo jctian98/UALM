@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audio Generation Comparison</title>
+    <title>UALM Audio Generation Demo</title>
     <style>
         * {
             margin: 0;
@@ -126,6 +126,105 @@
             background-color: #f0f0f0;
         }
         
+        /* Dialogue Section Styles */
+        .dialogue-demo {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .dialogue-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .message {
+            margin-bottom: 25px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .message-header {
+            padding: 12px 20px;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        
+        .user-message .message-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .assistant-message .message-header {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+        }
+        
+        .message-content {
+            padding: 20px;
+            background: white;
+            line-height: 1.7;
+        }
+        
+        .message-content p {
+            margin-bottom: 15px;
+        }
+        
+        .message-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .generation-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .detail-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .detail-box h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .detail-box p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .detail-box p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .generated-audio {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .generated-audio h4 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+        
+        .generated-audio audio {
+            width: 100%;
+            max-width: 500px;
+        }
+        
         .nav-buttons {
             position: fixed;
             right: 30px;
@@ -176,6 +275,14 @@
             .content {
                 padding: 20px;
             }
+            
+            .generation-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .dialogue-demo {
+                padding: 20px;
+            }
         }
         
         footer {
@@ -205,8 +312,8 @@
     
     <div class="container">
         <header>
-            <h1>🎵 Audio Generation Model Comparison</h1>
-            <p class="subtitle">Interactive comparison of state-of-the-art audio generation models</p>
+            <h1>🎵 UALM Audio Generation Demo</h1>
+            <p class="subtitle">Interactive comparison of state-of-the-art audio generation models with dialogue-based generation</p>
         </header>
         
         <div class="content">
@@ -589,10 +696,510 @@
                     </table>
                 </div>
             </section>
+            
+            <!-- Dialogue Generation Section -->
+            <section class="section">
+                <h2 class="section-title">💬 Enrichment with Imaginary Prompt</h2>
+                
+                <div class="dialogue-demo">
+                    <div class="dialogue-container">
+                        <div class="message user-message">
+                            <div class="message-header">👤 User</div>
+                            <div class="message-content">
+                                I'm envisioning a futuristic cityscape scene with vibrant nightlife. I need an audio track that captures the energy and artificiality of the environment, something you might hear in a trendy club or a cyberpunk advertisement.
+                            </div>
+                        </div>
+                        
+                        <div class="message assistant-message">
+                            <div class="message-header">🤖 Assistant</div>
+                            <div class="message-content">
+                                <p>Okay, I will create an audio track that evokes a vibrant and artificial atmosphere, similar to a futuristic cityscape nightlife scene. The audio will be structured as follows:</p>
+                                
+                                <p><strong>Music:</strong> There will be continuous, upbeat electronic music playing throughout. This will be a high-energy track with a fast tempo, utilizing synthesizers and a driving beat to create a sense of forward momentum and excitement.</p>
+                                
+                                <p><strong>Female Singing:</strong> A clear, medium-pitched female voice will be singing continuously in an energetic style, fitting seamlessly with the upbeat music.</p>
+                                
+                                <p><strong>Vocal Effects:</strong> Occasionally, the female singing will be processed with robotic or autotuned effects to create a distinct and artificial sound, highlighting the futuristic nature of the scene.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generation-details">
+                            <div class="detail-box">
+                                <h4>📝 Keywords</h4>
+                                <p>Music, Female singing, Vocal effects</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎨 Layout</h4>
+                                <p>The audio will feature continuous, upbeat electronic music. A female voice will be singing throughout, with some vocal effects applied to her voice.</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎵 Description</h4>
+                                <p><strong>Music:</strong> A continuous, high-energy electronic music track with a fast tempo, featuring synthesizers and a driving beat.</p>
+                                <p><strong>Female singing:</strong> A clear, medium-pitched female voice singing in an energetic style, fitting the upbeat music.</p>
+                                <p><strong>Vocal effects:</strong> The female singing will occasionally have a robotic or autotuned effect applied, making it sound processed and distinct.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generated-audio">
+                            <h4>🎧 Generated Audio</h4>
+                            <audio controls>
+                                <source src="audio/imagination_1.wav" type="audio/wav">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Example 2 -->
+                <div class="dialogue-demo" style="margin-top: 40px;">
+                    <div class="dialogue-container">
+                        <div class="message user-message">
+                            <div class="message-header">👤 User</div>
+                            <div class="message-content">
+                                I'm working on a scene that needs a very peaceful and relaxing outdoor setting. I want it to evoke a sense of calm and tranquility, like a perfect summer morning in the countryside.
+                            </div>
+                        </div>
+                        
+                        <div class="message assistant-message">
+                            <div class="message-header">🤖 Assistant</div>
+                            <div class="message-content">
+                                <p>Okay, to create that relaxing and tranquil countryside soundscape, I will use these elements:</p>
+                                
+                                <p><strong>1. Ambient Nature:</strong> I'll start with a continuous base layer of a gentle outdoor soundscape. This will create a sense of space and natural quietude to define the environment.</p>
+                                
+                                <p><strong>2. Distinct Bird Chirp:</strong> Layered on top of the ambient sound, I will add a clear, short chirp of a small songbird, appearing briefly.</p>
+                                
+                                <p><strong>3. Insect Hum:</strong> Finally, I will include a low, soft, continuous insect hum, similar to the sound of crickets or cicadas in the distance, to enrich the background ambiance.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generation-details">
+                            <div class="detail-box">
+                                <h4>📝 Keywords</h4>
+                                <p>Bird chirp, Insect hum, Ambient nature</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎨 Layout</h4>
+                                <p>The audio will start with the continuous, soft sounds of an ambient nature environment. A distinct bird chirp will occur within this continuous background, followed by a light insect hum.</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎵 Description</h4>
+                                <p><strong>Bird chirp:</strong> The clear, short, and distinct chirp of a small bird, likely a songbird, appearing briefly.</p>
+                                <p><strong>Insect hum:</strong> A low, soft, and continuous hum, indicative of distant or small insects like crickets or cicadas.</p>
+                                <p><strong>Ambient nature:</strong> A gentle and open outdoor soundscape, with a sense of space and natural quietude.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generated-audio">
+                            <h4>🎧 Generated Audio</h4>
+                            <audio controls>
+                                <source src="audio/imagination_2.wav" type="audio/wav">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Example 3 -->
+                <div class="dialogue-demo" style="margin-top: 40px;">
+                    <div class="dialogue-container">
+                        <div class="message user-message">
+                            <div class="message-header">👤 User</div>
+                            <div class="message-content">
+                                I need an ambient soundscape that evokes a quiet, contemplative mood, perhaps suitable for a scene in a park or garden after a light shower. I want it to feel natural and peaceful, with a hint of mystery or anticipation.
+                            </div>
+                        </div>
+                        
+                        <div class="message assistant-message">
+                            <div class="message-header">🤖 Assistant</div>
+                            <div class="message-content">
+                                <p>Okay, to create that quiet, contemplative, and slightly mysterious mood in a park or garden after a shower, I will structure the audio with the following elements:</p>
+                                
+                                <p><strong>• Rain:</strong> The background will be established with the gentle, continuous sound of light rain falling on various surfaces, providing a soft and consistent ambiance.</p>
+                                
+                                <p><strong>• Footsteps:</strong> Shortly after the rain begins, the sound of soft, rhythmic footsteps will start, suggesting someone is walking slowly on a slightly wet or uneven surface.</p>
+                                
+                                <p><strong>• Rustling:</strong> Simultaneously with the rain and footsteps, I will include a brief, light rustling sound, similar to paper or leaves being gently moved or disturbed.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generation-details">
+                            <div class="detail-box">
+                                <h4>📝 Keywords</h4>
+                                <p>Rain, Footsteps, Rustling</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎨 Layout</h4>
+                                <p>The audio will start with the sound of light rain falling, which will continue throughout. Shortly after, the distinct sound of footsteps will begin, followed by a brief rustling sound, all occurring simultaneously with the rain.</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎵 Description</h4>
+                                <p><strong>Rain:</strong> The gentle, continuous sound of light rain falling on various surfaces, creating a soft, consistent background ambiance.</p>
+                                <p><strong>Footsteps:</strong> The soft, rhythmic sound of footsteps, suggesting someone walking slowly on a slightly wet or uneven surface.</p>
+                                <p><strong>Rustling:</strong> A brief, light rustling sound, like paper or leaves being gently moved or disturbed.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generated-audio">
+                            <h4>🎧 Generated Audio</h4>
+                            <audio controls>
+                                <source src="audio/imagination_3.wav" type="audio/wav">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Example 4 -->
+                <div class="dialogue-demo" style="margin-top: 40px;">
+                    <div class="dialogue-container">
+                        <div class="message user-message">
+                            <div class="message-header">👤 User</div>
+                            <div class="message-content">
+                                I need a calming soundscape for a meditation app. Something that feels peaceful and reflective, almost like a dream.
+                            </div>
+                        </div>
+                        
+                        <div class="message assistant-message">
+                            <div class="message-header">🤖 Assistant</div>
+                            <div class="message-content">
+                                <p>Okay, to create that peaceful and reflective dreamscape, I will structure the audio using the following elements:</p>
+                                
+                                <p><strong>1. Foundation:</strong> The audio will begin with a sustained synth melody. The melody will be smooth and ethereal, with a slightly melancholic tone and a moderate tempo, establishing a tranquil mood.</p>
+                                
+                                <p><strong>2. Layered Elements:</strong></p>
+                                <p><strong>• Bell Sounds:</strong> Concurrent with the synth melody, clear, high-pitched bell or chime sounds will be introduced, adding a layer of sparkle and delicate texture to the overall sound.</p>
+                                <p><strong>• Light Percussion:</strong> To provide a gentle, underlying pulse, I will add subtle, rhythmic percussion. This will likely be a gentle shaker or a light hi-hat, offering a soft, unobtrusive rhythm that supports the meditative atmosphere.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generation-details">
+                            <div class="detail-box">
+                                <h4>📝 Keywords</h4>
+                                <p>Synth melody, Bell sounds, Light percussion</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎨 Layout</h4>
+                                <p>The audio will start with a sustained synth melody. Bell sounds will join concurrently, and light percussion will be added to provide a steady rhythm.</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎵 Description</h4>
+                                <p><strong>Synth melody:</strong> A smooth, ethereal synth melody with a sustained, slightly melancholic tone and a moderate tempo.</p>
+                                <p><strong>Bell sounds:</strong> Clear, high-pitched bell or chime sounds that play alongside the synth, adding sparkle.</p>
+                                <p><strong>Light percussion:</strong> Subtle, rhythmic percussion, possibly a gentle shaker or light hi-hat, providing a soft pulse.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generated-audio">
+                            <h4>🎧 Generated Audio</h4>
+                            <audio controls>
+                                <source src="audio/imagination_4.wav" type="audio/wav">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Example 5 -->
+                <div class="dialogue-demo" style="margin-top: 40px;">
+                    <div class="dialogue-container">
+                        <div class="message user-message">
+                            <div class="message-header">👤 User</div>
+                            <div class="message-content">
+                                I need a piece of music for a parade scene. It should be high-energy and celebratory, something that really captures the excitement of a street performance.
+                            </div>
+                        </div>
+                        
+                        <div class="message assistant-message">
+                            <div class="message-header">🤖 Assistant</div>
+                            <div class="message-content">
+                                <p>Okay, to create that high-energy, celebratory parade music, I will structure the audio as follows:</p>
+                                
+                                <p><strong>Brass Band Music:</strong> The audio will begin with the sound of a lively brass band playing an upbeat, rhythmic melody. The music will feature prominent trumpets and trombones, creating a full and energetic sound.</p>
+                                
+                                <p><strong>Percussion:</strong> Shortly after the brass band music begins, I will introduce the sound of percussion. This will consist of a steady, driving beat, likely from a drum kit, providing a strong rhythmic foundation for the music. The percussion will continue throughout the piece, accompanying the brass band.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generation-details">
+                            <div class="detail-box">
+                                <h4>📝 Keywords</h4>
+                                <p>Brass band music, Percussion</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎨 Layout</h4>
+                                <p>The audio will start with the sound of a brass band playing a lively tune. Percussion will join in shortly after, accompanying the brass band throughout.</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎵 Description</h4>
+                                <p><strong>Brass band music:</strong> The sound of a lively brass band playing an upbeat, rhythmic melody. The music will feature prominent trumpets and trombones, creating a full and energetic sound.</p>
+                                <p><strong>Percussion:</strong> The sound of percussion, likely a drum kit, providing a steady, driving beat that supports the brass band music.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generated-audio">
+                            <h4>🎧 Generated Audio</h4>
+                            <audio controls>
+                                <source src="audio/imagination_5.wav" type="audio/wav">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Example 6 -->
+                <div class="dialogue-demo" style="margin-top: 40px;">
+                    <div class="dialogue-container">
+                        <div class="message user-message">
+                            <div class="message-header">👤 User</div>
+                            <div class="message-content">
+                                I need an audio piece for a theatrical scene, something that builds to a powerful emotional climax. Think grand and sweeping.
+                            </div>
+                        </div>
+                        
+                        <div class="message assistant-message">
+                            <div class="message-header">🤖 Assistant</div>
+                            <div class="message-content">
+                                <p>Okay, to create this grand and emotionally climactic theatrical scene, I will construct the audio as follows:</p>
+                                
+                                <p><strong>1. Orchestral Music:</strong> The piece will begin with building, grand orchestral music. This will be a dramatic soundscape with a strong rhythmic pulse and rising intensity, incorporating elements of brass, strings, and percussion.</p>
+                                
+                                <p><strong>2. Male Singing:</strong> After the orchestral music has established itself, a male voice will begin singing over the continuous music. This will be a clear, powerful male tenor voice, singing in a dramatic, operatic style and with a distinct vibrato.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generation-details">
+                            <div class="detail-box">
+                                <h4>📝 Keywords</h4>
+                                <p>Orchestral music, Male singing</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎨 Layout</h4>
+                                <p>The audio will begin with a building orchestral music piece. A male voice will then start singing over the continuous music.</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎵 Description</h4>
+                                <p><strong>Orchestral music:</strong> The sound of grand, dramatic orchestral music with a strong rhythmic pulse and a rising intensity, including brass, strings, and percussion.</p>
+                                <p><strong>Male singing:</strong> A clear, powerful male tenor voice singing in a dramatic, operatic style, with a distinct vibrato.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generated-audio">
+                            <h4>🎧 Generated Audio</h4>
+                            <audio controls>
+                                <source src="audio/imagination_6.wav" type="audio/wav">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Example 7 -->
+                <div class="dialogue-demo" style="margin-top: 40px;">
+                    <div class="dialogue-container">
+                        <div class="message user-message">
+                            <div class="message-header">👤 User</div>
+                            <div class="message-content">
+                                I'm looking for an audio track that captures the energy of a school playground during recess or a busy public park on a sunny day. It should feel vibrant and full of life.
+                            </div>
+                        </div>
+                        
+                        <div class="message assistant-message">
+                            <div class="message-header">🤖 Assistant</div>
+                            <div class="message-content">
+                                <p>Okay, I will create a vibrant and lively atmosphere by layering distinct audio elements. The overall structure will be as follows:</p>
+                                
+                                <p><strong>1. Children's Voices:</strong> The primary sound element will be the distinct voices of children. These will be a mix of high-pitched, excited, and playful sounds from multiple children, including speech and other playful noises, with some instances of overlapping voices.</p>
+                                
+                                <p><strong>2. Background Crowd Noise:</strong> Layered beneath the children's voices, I will include a continuous, low-level murmur of general crowd noise. This will consist of many people talking and moving in the background, helping to create a lively and populated environment.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generation-details">
+                            <div class="detail-box">
+                                <h4>📝 Keywords</h4>
+                                <p>Children's voices, Crowd noise</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎨 Layout</h4>
+                                <p>The audio will feature the distinct sound of children's voices layered over a general background of crowd noise.</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎵 Description</h4>
+                                <p><strong>Children's voices:</strong> A mix of high-pitched, excited, and playful voices of several children speaking and making sounds, sometimes overlapping.</p>
+                                <p><strong>Crowd noise:</strong> The continuous, low-level murmur of many people talking and moving in a public space, creating a lively atmosphere.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generated-audio">
+                            <h4>🎧 Generated Audio</h4>
+                            <audio controls>
+                                <source src="audio/imagination_7.wav" type="audio/wav">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Example 8 -->
+                <div class="dialogue-demo" style="margin-top: 40px;">
+                    <div class="dialogue-container">
+                        <div class="message user-message">
+                            <div class="message-header">👤 User</div>
+                            <div class="message-content">
+                                I'm working on a podcast segment about the nostalgia of classic video games. I need audio that captures the feeling of friends hanging out and enjoying those old games together.
+                            </div>
+                        </div>
+                        
+                        <div class="message assistant-message">
+                            <div class="message-header">🤖 Assistant</div>
+                            <div class="message-content">
+                                <p>Okay, to capture that feeling of friends enjoying classic video games, I'll combine the following elements:</p>
+                                
+                                <p><strong>• Retro game music:</strong> A cheerful, repetitive, and simple melodic tune, reminiscent of music from old video games, will play continuously in the background, setting the scene.</p>
+                                
+                                <p><strong>• Male speech:</strong> A male voice with a medium pitch and an excited, somewhat animated tone will speak intermittently over the music.</p>
+                                
+                                <p><strong>• Male laughter:</strong> Following the male speech, there will be a short, high-pitched, and very expressive burst of laughter from a man to emphasize the fun and camaraderie.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generation-details">
+                            <div class="detail-box">
+                                <h4>📝 Keywords</h4>
+                                <p>Retro game music, Male speech, Male laughter</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎨 Layout</h4>
+                                <p>The audio will feature continuous retro game music. Over this music, a male voice will speak intermittently, followed by a short burst of male laughter.</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎵 Description</h4>
+                                <p><strong>Retro game music:</strong> A cheerful, repetitive, and simple melodic tune, reminiscent of music from old video games, playing continuously in the background.</p>
+                                <p><strong>Male speech:</strong> A man speaking with a medium pitch and an excited, somewhat animated tone.</p>
+                                <p><strong>Male laughter:</strong> A short, high-pitched, and very expressive burst of laughter from a man.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generated-audio">
+                            <h4>🎧 Generated Audio</h4>
+                            <audio controls>
+                                <source src="audio/imagination_8.wav" type="audio/wav">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Example 9 -->
+                <div class="dialogue-demo" style="margin-top: 40px;">
+                    <div class="dialogue-container">
+                        <div class="message user-message">
+                            <div class="message-header">👤 User</div>
+                            <div class="message-content">
+                                I'm putting together a high-energy advertisement for a new fitness app. I need something with a modern, edgy feel that will really pump people up and get them motivated. Think powerful visuals and a fast-paced narrative.
+                            </div>
+                        </div>
+                        
+                        <div class="message assistant-message">
+                            <div class="message-header">🤖 Assistant</div>
+                            <div class="message-content">
+                                <p>Okay, I will create a soundscape to support your high-energy, edgy fitness app advertisement, focusing on a motivational feel. Here's the audio plan:</p>
+                                
+                                <p><strong>1. Electronic Music:</strong> I will start with driving, uptempo electronic music. This track will feature a strong, repetitive drum beat, prominent synthesizers, and a slightly distorted texture to give it a high-energy feel. The music will be continuous and designed to build in intensity over time.</p>
+                                
+                                <p><strong>2. Male Speech:</strong> A male voice will overlay the electronic music. This voice will have a slightly rough quality and will deliver lines in a rhythmic style, akin to chanting or rapping. The delivery style will be matched to the energy of the music to create a cohesive, motivational experience.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generation-details">
+                            <div class="detail-box">
+                                <h4>📝 Keywords</h4>
+                                <p>Electronic music, Male speech</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎨 Layout</h4>
+                                <p>The audio will start with electronic music featuring a driving beat. A male voice will then speak over the continuous music, which gradually increases in intensity.</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎵 Description</h4>
+                                <p><strong>Electronic music:</strong> Uptempo electronic music with a strong, repetitive drum beat, synthesizers, and a slightly distorted, high-energy feel. The music will build in intensity.</p>
+                                <p><strong>Male speech:</strong> A male voice, slightly rough in quality, will speak in a rhythmic, chanting, or rap-like manner, matching the energy of the music.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generated-audio">
+                            <h4>🎧 Generated Audio</h4>
+                            <audio controls>
+                                <source src="audio/imagination_9.wav" type="audio/wav">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Example 10 -->
+                <div class="dialogue-demo" style="margin-top: 40px;">
+                    <div class="dialogue-container">
+                        <div class="message user-message">
+                            <div class="message-header">👤 User</div>
+                            <div class="message-content">
+                                I'm working on a racing game and need audio for an exciting moment during a race. I want the player to feel the adrenaline and hear the intensity of the competition, with commentary adding to the thrill.
+                            </div>
+                        </div>
+                        
+                        <div class="message assistant-message">
+                            <div class="message-header">🤖 Assistant</div>
+                            <div class="message-content">
+                                <p>Okay, I will generate the audio to convey an exciting moment in a race with accompanying commentary:</p>
+                                
+                                <p><strong>1. Initial Sound Event:</strong> The audio will begin with the prominent sound of a race car engine. This will be a continuous, very loud, high-pitched whine and roar, representing a powerful engine at high speed and performance.</p>
+                                
+                                <p><strong>2. Overlapping Sound Event:</strong> While the race car engine sound continues in the background, a male voice will start speaking. The male speech will consist of a man speaking with an excited, slightly strained voice, likely due to the surrounding noise and his emotion. The pitch of his voice will be medium.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generation-details">
+                            <div class="detail-box">
+                                <h4>📝 Keywords</h4>
+                                <p>Race car engine, Male speech</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎨 Layout</h4>
+                                <p>The audio will start with the loud, high-pitched sound of a race car engine. A male voice will then begin speaking, while the race car engine sound continues in the background.</p>
+                            </div>
+                            
+                            <div class="detail-box">
+                                <h4>🎵 Description</h4>
+                                <p><strong>Race car engine:</strong> The continuous, very loud, high-pitched whine and roar of a powerful race car engine, indicating high speed and performance.</p>
+                                <p><strong>Male speech:</strong> A man speaking with an excited, slightly strained voice, likely due to the surrounding noise and his emotion. His pitch is medium.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="generated-audio">
+                            <h4>🎧 Generated Audio</h4>
+                            <audio controls>
+                                <source src="audio/imagination_10.wav" type="audio/wav">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
         
         <footer>
-            <p>Compare the quality of different audio generation models side by side</p>
+            <p>UALM: Unified Audio and Language Model for enhanced audio generation</p>
+            <p>Compare model outputs and explore dialogue-based audio generation</p>
             <p style="margin-top: 10px;">
                 <a href="https://github.com/jctian98/UALM" class="github-link">View on GitHub</a>
             </p>
