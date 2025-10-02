@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Generation Comparison</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .sample {
+            margin-bottom: 40px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .description {
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #764ba2;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+        }
+        
+        td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        audio {
+            width: 100%;
+            max-width: 250px;
+            height: 40px;
+        }
+        
+        audio::-webkit-media-controls-panel {
+            background-color: #f0f0f0;
+        }
+        
+        .nav-buttons {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .nav-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-buttons {
+                position: static;
+                flex-direction: row;
+                justify-content: center;
+                transform: none;
+                margin: 20px 0;
+            }
+            
+            audio {
+                max-width: 100%;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+        
+        footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+        
+        .github-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .github-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-buttons">
+        <button class="nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Go to top">↑</button>
+        <button class="nav-btn" onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})" title="Go to bottom">↓</button>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1>🎵 Audio Generation Model Comparison</h1>
+            <p class="subtitle">Interactive comparison of state-of-the-art audio generation models</p>
+        </header>
+        
+        <div class="content">
+            <!-- Music Generation Section -->
+            <section class="section">
+                <h2 class="section-title">🎼 Music Generation (SongDescriber Dataset)</h2>
+                
+                <!-- SongDescriber 1 -->
+                <div class="sample">
+                    <p class="description"><strong>Sample 1:</strong> Electronic music that has a constant melody throughout with accompanying instruments used to supplement the melody which can be heard in possibly a casual setting</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Groundtruth</th>
+                                <th>UALM-Gen</th>
+                                <th>UALM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_music_gt_1.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_ualmgen_1.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_ualm_1.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table style="margin-top: 10px;">
+                        <thead>
+                            <tr>
+                                <th>ETTA</th>
+                                <th>Stable Audio Open</th>
+                                <th>MusicGen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_music_etta_1.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_sao_1.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_musicgen_1.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- SongDescriber 2 -->
+                <div class="sample">
+                    <p class="description"><strong>Sample 2:</strong> Delicate orchestral music with a magical Christmas feel</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Groundtruth</th>
+                                <th>UALM-Gen</th>
+                                <th>UALM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_music_gt_3.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_ualmgen_3.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_ualm_3.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table style="margin-top: 10px;">
+                        <thead>
+                            <tr>
+                                <th>ETTA</th>
+                                <th>Stable Audio Open</th>
+                                <th>MusicGen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_music_etta_3.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_sao_3.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_musicgen_3.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- SongDescriber 3 -->
+                <div class="sample">
+                    <p class="description"><strong>Sample 3:</strong> Relaxing jazz music with soothing melody that contains brass instruments and various keyboards</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Groundtruth</th>
+                                <th>UALM-Gen</th>
+                                <th>UALM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_music_gt_7.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_ualmgen_7.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_ualm_7.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table style="margin-top: 10px;">
+                        <thead>
+                            <tr>
+                                <th>ETTA</th>
+                                <th>Stable Audio Open</th>
+                                <th>MusicGen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_music_etta_7.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_sao_7.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_musicgen_7.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- SongDescriber 4 -->
+                <div class="sample">
+                    <p class="description"><strong>Sample 4:</strong> A slow paced arty electronic track that features a strange tuned guitar</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Groundtruth</th>
+                                <th>UALM-Gen</th>
+                                <th>UALM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_music_gt_36.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_ualmgen_36.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_ualm_36.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table style="margin-top: 10px;">
+                        <thead>
+                            <tr>
+                                <th>ETTA</th>
+                                <th>Stable Audio Open</th>
+                                <th>MusicGen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_music_etta_36.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_sao_36.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_musicgen_36.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- SongDescriber 5 -->
+                <div class="sample">
+                    <p class="description"><strong>Sample 5:</strong> Contemporary trendy optimistic indie pop, with dirty drums, happy guitar comping and synthesizer solo</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Groundtruth</th>
+                                <th>UALM-Gen</th>
+                                <th>UALM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_music_gt_48.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_ualmgen_48.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_ualm_48.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table style="margin-top: 10px;">
+                        <thead>
+                            <tr>
+                                <th>ETTA</th>
+                                <th>Stable Audio Open</th>
+                                <th>MusicGen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_music_etta_48.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_sao_48.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_music_musicgen_48.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <!-- Sound Effect Generation Section -->
+            <section class="section">
+                <h2 class="section-title">🔊 Sound Effect Generation (AudioCaps Dataset)</h2>
+                
+                <!-- AudioCaps 1 -->
+                <div class="sample">
+                    <p class="description"><strong>Sample 1:</strong> A series of rapid gunshots firing alongside footsteps running on concrete as a man groans while a muffled heart beats in the background</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Groundtruth</th>
+                                <th>UALM-Gen</th>
+                                <th>UALM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_audio_gt_9.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_ualmgen_9.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_ualm_9.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table style="margin-top: 10px;">
+                        <thead>
+                            <tr>
+                                <th>ETTA</th>
+                                <th>Stable Audio Open</th>
+                                <th>MusicGen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_audio_etta_9.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_sao_9.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_musicgen_9.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- AudioCaps 2 -->
+                <div class="sample">
+                    <p class="description"><strong>Sample 2:</strong> A man talking as metal clanks together followed by footsteps on grass as insects buzz in the background</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Groundtruth</th>
+                                <th>UALM-Gen</th>
+                                <th>UALM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_audio_gt_22.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_ualmgen_22.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_ualm_22.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table style="margin-top: 10px;">
+                        <thead>
+                            <tr>
+                                <th>ETTA</th>
+                                <th>Stable Audio Open</th>
+                                <th>MusicGen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_audio_etta_22.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_sao_22.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_musicgen_22.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- AudioCaps 3 -->
+                <div class="sample">
+                    <p class="description"><strong>Sample 3:</strong> Water lightly splashing as a bird chirps and wind blows into a microphone</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Groundtruth</th>
+                                <th>UALM-Gen</th>
+                                <th>UALM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_audio_gt_24.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_ualmgen_24.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_ualm_24.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table style="margin-top: 10px;">
+                        <thead>
+                            <tr>
+                                <th>ETTA</th>
+                                <th>Stable Audio Open</th>
+                                <th>MusicGen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_audio_etta_24.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_sao_24.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_musicgen_24.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- AudioCaps 4 -->
+                <div class="sample">
+                    <p class="description"><strong>Sample 4:</strong> An engine running followed by the engine revving and tires screeching</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Groundtruth</th>
+                                <th>UALM-Gen</th>
+                                <th>UALM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_audio_gt_50.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_ualmgen_50.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_ualm_50.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table style="margin-top: 10px;">
+                        <thead>
+                            <tr>
+                                <th>ETTA</th>
+                                <th>Stable Audio Open</th>
+                                <th>MusicGen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_audio_etta_50.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_sao_50.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_musicgen_50.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- AudioCaps 5 -->
+                <div class="sample">
+                    <p class="description"><strong>Sample 5:</strong> Vibrations from a sewing machine followed by clicks and a man speaking</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Groundtruth</th>
+                                <th>UALM-Gen</th>
+                                <th>UALM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_audio_gt_39.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_ualmgen_39.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_ualm_39.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table style="margin-top: 10px;">
+                        <thead>
+                            <tr>
+                                <th>ETTA</th>
+                                <th>Stable Audio Open</th>
+                                <th>MusicGen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><audio controls><source src="audio/naive_audio_etta_39.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_sao_39.wav" type="audio/wav"></audio></td>
+                                <td><audio controls><source src="audio/naive_audio_musicgen_39.wav" type="audio/wav"></audio></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <p>Compare the quality of different audio generation models side by side</p>
+            <p style="margin-top: 10px;">
+                <a href="https://github.com/[username]/[repo]" class="github-link">View on GitHub</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -11,7 +11,7 @@
     <tr>
       <td>
         <audio controls>
-          <source src="/UALM/audio/naive_music_gt_1.wav" type="audio/wav">
+          <source src="audio/naive_music_gt_1.wav" type="audio/wav">
         </audio>
       </td>
       <td>
